@@ -1,22 +1,18 @@
-let money = 500;
-let income = ' Frilance';
-let addExpenses = 'Internet, taxi, commynalka';
-let deposit = true;
-let mission = 5000;
-let period = 12;
+//1
+let num = 266219;
+//2
+let proiz = 1;
 
-
-console.log (money, income, deposit);
-console.log (addExpenses.length);
-console.log ("Период равен", period, "месяцев. Цель заработать", mission, "рублей" );
-
-addExpenses.toLowerCase();
-let arr = [];
-for ( let i = 0; i < addExpenses.length; i++)
+for (let i = 0; i < 6; i++)
 {
-    arr[i] = addExpenses[i];
+    proiz *= num % 10;
+    num = Math.floor (num / 10); 
 }
-console.log (arr);
+console.log (proiz);
+//3
+proiz = proiz * proiz * proiz;
+console.log (proiz);
+//4
 
-let budgetDay = money / 30;
-console.log (budgetDay, "В день");
+proiz = String(proiz).slice(0,2);
+console.log (proiz);
