@@ -1,61 +1,53 @@
 'use strict';
 
-//2
-let money = prompt('Какой ваш месячный доход?');
+//1
+const lang = prompt('Выберите язык');
+const week = [
+    ["Понедельник, вторник, среда, четверг, пятница, суббота, воскресенье."], 
+    ["Monday, Tuesday, Wednesday, Thursday, Friday, Sunday, Saturday."]
+];
+const miss = "На таком языке мы не говорим.";
 
-
-//3
-let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
-
-
-//4
-let deposit = confirm('Есть ли у вас депозит в банке?');
-let mission = 50000;
-let period = 12;
-
-money = +money;
-
-console.log (typeof money);
-console.log (typeof addExpenses);
-console.log (typeof deposit);
-console.log (addExpenses.length);
-console.log ("Период равен", period, "месяцев.");
-console.log( "Цель заработать", mission, "рублей" );
-
-addExpenses.toLowerCase();
-console.log(addExpenses);
-console.log(addExpenses.split());
-
-//5
-let expenses1 = prompt('Введие обязательную статью расходов:');
-let amount1 = prompt('Сколько это будет стоить?');
-let expenses2 = prompt('Введите обязательную статью расходов:');
-let amount2 = prompt('Сколько это будет стоить?');
-amount1 = +amount1;
-amount2 = +amount2;
-
-
-//6
-let budgetMonth = money - amount1 - amount2;
-console.log("Бюджет на месяц равен: " ,budgetMonth);
-
-
-//7
-console.log("Цель будет достигнута через" , Math.round(mission/budgetMonth), "месяцев(-а)");
-
-
-//8
-let budgetDay = Math.round(budgetMonth / 30);
-console.log ("Бюджет в день" , budgetDay);
-
-
-//9
-if (budgetMonth >= 1200){
-    console.log('У вас большой уровень дохода.');
-} else if (budgetMonth >= 600 && budgetMonth < 1200){
-    console.log('У вас средний уровень дохода.')
-} else if (budgetMonth > 0 && budgetMonth < 600){
-    console.log ('К сожалению у вас уровень дохода ниже среднего.')
-} else if (budgetMonth <= 0){
-    console.log('Что-то пошло не так...');
+//a
+if (lang === "ru"){
+    console.log (week[0]);
+} 
+else if (lang === "en"){
+    console.log (week[1]);
 }
+else {
+    console.log(miss);
+}
+
+
+//b
+switch(lang){
+    case "ru":
+        console.log (week[0]);
+        break;
+    case "en":
+        console.log (week[1]);
+        break;
+    default:
+        console.log(miss);
+}
+
+//через тернарку
+
+console.log(lang === "ru" ? week[0] : lang === "en" ? week[1] : miss);
+
+
+//c
+
+const data = [];
+
+data.ru = ['Понедельник, вторник, среда, четверг, пятница, суббота, воскресенье.'];
+data.en = ['Monday, Tuesday, Wednesday, Thursday, Friday, Sunday, Saturday.'];
+
+console.log(String(data[lang]));
+
+
+//2
+
+const namePerson = prompt('Введите имя:');
+console.log (namePerson === 'Артём' ? "директор" : namePerson === 'Максим' ? "преподаватель" : "такого человека нет.");
