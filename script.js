@@ -1,53 +1,81 @@
 'use strict';
 
-//1
-const lang = prompt('Выберите язык');
-const week = [
-    ["Понедельник, вторник, среда, четверг, пятница, суббота, воскресенье."], 
-    ["Monday, Tuesday, Wednesday, Thursday, Friday, Sunday, Saturday."]
-];
-const miss = "На таком языке мы не говорим.";
+let isNumber = function(n){
+    return !isNaN(parseFloat(n)) && isFinite(n);
+};
 
-//a
-if (lang === "ru"){
-    console.log (week[0]);
-} 
-else if (lang === "en"){
-    console.log (week[1]);
+
+let money,
+    income = 'Фриланс',
+    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
+    deposit = confirm('Есть ли у вас депозит в банке?'),
+    mission = 50000;
+    
+let expenses = [];
+
+
+
+let start = function(){
+    money = +prompt('Ваш месячный доход?');
+    while (!isNumber(money)){
+        money = prompt ('Ваш месячный доход?');
+    }
+};
+
+start ();
+
+
+let getExpensesMonth = function(){
+    let sum = 0;
+
+    for (let i = 0; i < 2;i++){
+        
+        expenses [i] = prompt ('Введите обязательную статью расходов?');
+
+        sum += +prompt('Во сколько это обойдётся?');
+    }
+    console.log(expenses);
+    return sum;
 }
-else {
-    console.log(miss);
+
+let expensesAmount = getExpensesMonth();
+
+console.log ('Расходы за месяц: ' + expensesAmount);
+
+let getAccumulatedMonth = function(){
+    return money - expensesAmount;
 }
 
 
-//b
-switch(lang){
-    case "ru":
-        console.log (week[0]);
-        break;
-    case "en":
-        console.log (week[1]);
-        break;
-    default:
-        console.log(miss);
+let accumulatedMonth = getAccumulatedMonth();
+
+let getTargetMonth = function(){
+    console.log ('Цель будет достигнута через ' + mission/accumulatedMonth);
 }
 
-//через тернарку
+function showTypeOf(data){
+    console.log(data, typeof(data));
+}
 
-console.log(lang === "ru" ? week[0] : lang === "en" ? week[1] : miss);
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf(deposit);
 
+console.log(addExpenses);
+console.log(addExpenses.split());
 
-//c
+getTargetMonth(mission, accumulatedMonth);
 
-const data = [];
+let budgetDay = Math.round(accumulatedMonth / 30);
+console.log ("Бюджет в день" , budgetDay);
 
-data.ru = ['Понедельник, вторник, среда, четверг, пятница, суббота, воскресенье.'];
-data.en = ['Monday, Tuesday, Wednesday, Thursday, Friday, Sunday, Saturday.'];
-
-console.log(String(data[lang]));
-
-
-//2
-
-const namePerson = prompt('Введите имя:');
-console.log (namePerson === 'Артём' ? "директор" : namePerson === 'Максим' ? "преподаватель" : "такого человека нет.");
+let getStatusIncome = function(){
+    if (accumulatedMonth >= 1200){
+        return('У вас большой уровень дохода.');
+    } else if (accumulatedMonth >= 600 && accumulatedMonth < 1200){
+        return('У вас средний уровень дохода.');
+    } else {
+        return ('вы нищеброд.');
+    }
+};
+console.log(getStatusIncome());
