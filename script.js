@@ -21,20 +21,20 @@ amount2 = +amount2;
 
 
 //1
-function getExpensesMonth(a,b){
-    console.log(a + b);
+function getExpensesMonth(term1, term2){
+    console.log(term1 + term2);
 }
 
 //2
-function getAccumulatedMonth(a,b,c){
-    return (a-b-c);
+function getAccumulatedMonth(minuend, subtr1, subtr2){
+    return (minuend - subtr1 - subtr2);
 } 
 
 //3
 let accumulatedMonth = getAccumulatedMonth(money, amount1, amount2);
 
-function getTargetMonth(a,b){
-    console.log(a/b);
+function getTargetMonth(mission, accumulatedMonth){
+    console.log(mission / accumulatedMonth);
 }
 
 
@@ -48,9 +48,8 @@ showTypeOf(deposit);
 
 getExpensesMonth(amount1,amount2);
 
-addExpenses.toLowerCase();
 console.log(addExpenses);
-console.log(addExpenses.split());
+console.log(addExpenses.toLowerCase().split());
 
 getTargetMonth(mission, accumulatedMonth);
 
@@ -66,7 +65,7 @@ let getStatusIncome = function(){
     } else if (accumulatedMonth >= 600 && accumulatedMonth < 1200){
         return('У вас средний уровень дохода.');
     } else {
-        return ('вы нищеброд.');
+        return ('Ваш уровень дохода ниже среднего.');
     }
 };
 console.log(getStatusIncome());
