@@ -5,8 +5,8 @@ let isNumber = function(n){
 };
 
 
-let money,
-    income = 'Фриланс',
+let money;
+const income = 'Фриланс',
     addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую'),
     deposit = confirm('Есть ли у вас депозит в банке?'),
     mission = 50000;
@@ -50,7 +50,11 @@ let getAccumulatedMonth = function(){
 let accumulatedMonth = getAccumulatedMonth();
 
 let getTargetMonth = function(){
-    console.log ('Цель будет достигнута через ' + mission/accumulatedMonth);
+    if (accumulatedMonth > 0){
+        console.log ('Цель будет достигнута через ' + mission/accumulatedMonth);
+    } else {
+        console.log ('Цель не будет достигнута.');
+    }
 }
 
 function showTypeOf(data){
