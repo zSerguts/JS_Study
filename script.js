@@ -1,19 +1,11 @@
 'use strict';
+let money = +prompt('Какой ваш месячный доход?'),
+    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
 
-//2
-let money = prompt('Какой ваш месячный доход?');
+const deposit = confirm('Есть ли у вас депозит в банке?'),
+    mission = 50000,
+    period = 12;
 
-
-//3
-let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
-
-
-//4
-let deposit = confirm('Есть ли у вас депозит в банке?');
-let mission = 50000;
-let period = 12;
-
-money = +money;
 
 console.log (typeof money);
 console.log (typeof addExpenses);
@@ -22,21 +14,17 @@ console.log (addExpenses.length);
 console.log ("Период равен", period, "месяцев.");
 console.log( "Цель заработать", mission, "рублей" );
 
-addExpenses.toLowerCase();
-console.log(addExpenses);
-console.log(addExpenses.split());
+console.log(addExpenses.toLowerCase().split());
 
 //5
 let expenses1 = prompt('Введие обязательную статью расходов:');
-let amount1 = prompt('Сколько это будет стоить?');
+let amount1 = +prompt('Сколько это будет стоить?');
 let expenses2 = prompt('Введите обязательную статью расходов:');
-let amount2 = prompt('Сколько это будет стоить?');
-amount1 = +amount1;
-amount2 = +amount2;
+let amount2 = +prompt('Сколько это будет стоить?');
 
 
 //6
-let budgetMonth = money - amount1 - amount2;
+const budgetMonth = money - amount1 - amount2;
 console.log("Бюджет на месяц равен: " ,budgetMonth);
 
 
@@ -45,7 +33,7 @@ console.log("Цель будет достигнута через" , Math.round(m
 
 
 //8
-let budgetDay = Math.round(budgetMonth / 30);
+const budgetDay = Math.round(budgetMonth / 30);
 console.log ("Бюджет в день" , budgetDay);
 
 
