@@ -38,11 +38,10 @@ console.log(lang === "ru" ? week[0] : lang === "en" ? week[1] : miss);
 
 
 //c
-
 const data = [];
 
-data.ru = ['Понедельник, вторник, среда, четверг, пятница, суббота, воскресенье.'];
-data.en = ['Monday, Tuesday, Wednesday, Thursday, Friday, Sunday, Saturday.'];
+data.ru = week[0];
+data.en = week[1];
 
 console.log(String(data[lang]));
 
