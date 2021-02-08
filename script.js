@@ -1,12 +1,12 @@
 'use strict';
 
 
-let isNumber = function(n){
+const isNumber = function(n){
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
-let money,
-    start = function(){
+let money;
+const start = function(){
     money = +prompt('Ваш месячный доход?', 12000);
     while (!isNumber(money)){
         money = prompt ('Ваш месячный доход?');
@@ -14,7 +14,7 @@ let money,
 }; // ++
 
 
-let appData = {
+const appData = {
     budget: 12000,
     budgetDay: 0,
     budgetMonth: 0,
