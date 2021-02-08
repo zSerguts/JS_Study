@@ -32,13 +32,13 @@ const appData = {
     asking: function(){
         if(confirm('Есть ли у вас дополнительный источник заработка?'))
         {
-            let itemIncome = prompt('Какой у вас дополнительный источник заработка?', 'Таксую');
+            let itemIncome = prompt('Какой у вас дополнительный источник заработка?', 'Таксую').trim();
             while(isNumber(itemIncome) === true){
-                itemIncome = prompt('Какой у вас дополнительный источник заработка?', 'Таксую');
+                itemIncome = prompt('Какой у вас дополнительный источник заработка?', 'Таксую').trim();
             }
-            let cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000);
+            let cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000).trim();
             while (isNumber(cashIncome) !== true){
-                cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000);
+                cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000).trim();
             }
             appData.income[itemIncome] = cashIncome;
         }
@@ -51,12 +51,15 @@ const appData = {
 
     getExpensesMonth: function(){
         for (let i = 0 ; i<2;i++){
-            let key = prompt('Введите обязательную статью расходов.');
+            let key = prompt('Введите обязательную статью расходов.').trim();
             while (isNumber(key) === true){
-                key = prompt('Введите обязательную статью расходов.');
+                key = prompt('Введите обязательную статью расходов.').trim();
             }
-            let expenses = +prompt('Сколько это будет стоить?');
-            appData.expenses[key] = expenses;  
+            let expenses = +prompt('Сколько это будет стоить?').trim();
+            while (isNumber(expenses) !== true){
+                expenses = +prompt('Сколько это будет стоть?');
+            }
+            appData.expenses[key] = expenses;
         }
     }, // ++
 
