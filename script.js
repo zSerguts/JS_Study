@@ -1,53 +1,51 @@
-'use strict';
+'strict';
 
-//1
-const lang = prompt('Выберите язык');
-const week = [
-    ["Понедельник, вторник, среда, четверг, пятница, суббота, воскресенье."], 
-    ["Monday, Tuesday, Wednesday, Thursday, Friday, Sunday, Saturday."]
-];
-const miss = "На таком языке мы не говорим.";
+const parents = document.querySelectorAll ('.books');
+const books = document.querySelectorAll ('.book');
 
-//a
-if (lang === "ru"){
-    console.log (week[0]);
-} 
-else if (lang === "en"){
-    console.log (week[1]);
-}
-else {
-    console.log(miss);
-}
+books[2].after(books[4]);
+parents[0].prepend(books[1]);
+parents[0].append(books[2]);
 
 
-//b
-switch(lang){
-    case "ru":
-        console.log (week[0]);
-        break;
-    case "en":
-        console.log (week[1]);
-        break;
-    default:
-        console.log(miss);
-}
+ let image = document.getElementsByTagName ('body');
 
-//через тернарку
+ console.log (image);
 
-console.log(lang === "ru" ? week[0] : lang === "en" ? week[1] : miss);
+ image[0].style.backgroundImage = "url(./image/you-dont-know-js.jpg)";
 
 
-//c
+let mark = document.getElementsByTagName('h2')[2];
 
-const data = [];
+console.log (mark);
 
-data.ru = ['Понедельник, вторник, среда, четверг, пятница, суббота, воскресенье.'];
-data.en = ['Monday, Tuesday, Wednesday, Thursday, Friday, Sunday, Saturday.'];
+mark.textContent = ("Книга 3. this и Прототипы Объектов");
+mark.style.color = "darkkhaki";
 
-console.log(String(data[lang]));
+let spam = document.querySelector ('.adv');
+spam.remove();
+
+let list = document.querySelectorAll ('.book ul')[1];
+
+let points = document.querySelectorAll('.book ul li');
+
+points[9].after(points[12]);
+points[12].after(points[14]);
+points[15].after(points[8]);
 
 
-//2
+points[38].before(points[45]);
+points[45].after(points[39]);
+points[39].after(points[40]);
+points[44].before(points[41]);
 
-const namePerson = prompt('Введите имя:');
-console.log (namePerson === 'Артём' ? "директор" : namePerson === 'Максим' ? "преподаватель" : "такого человека нет.");
+let OurObject = document.querySelectorAll ('.book ul')[5];
+const NewElem = document.createElement ('li');
+NewElem.textContent = " Глава 8: За пределами ES6 ";
+
+OurObject.append(NewElem);
+points[55].after(NewElem);
+
+
+console.log (list);
+console.log (points);
