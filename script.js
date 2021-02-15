@@ -1,149 +1,51 @@
-'use strict';
+'strict';
+
+const parents = document.querySelectorAll ('.books');
+const books = document.querySelectorAll ('.book');
+
+books[2].after(books[4]);
+parents[0].prepend(books[1]);
+parents[0].append(books[2]);
 
 
-const isNumber = function(n){
-    return !isNaN(parseFloat(n)) && isFinite(n);
-};
+ let image = document.getElementsByTagName ('body');
 
-let money;
-const start = function(){
-    money = +prompt('Ваш месячный доход?', 12000);
-    while (!isNumber(money)){
-        money = prompt ('Ваш месячный доход?');
-    }
-}; // ++
+ console.log (image);
+
+ image[0].style.backgroundImage = "url(./image/you-dont-know-js.jpg)";
 
 
-const appData = {
-    budget: 12000,
-    budgetDay: 0,
-    budgetMonth: 0,
-    expensesMonth: 0,
-    income: {},
-    addIncome: [],
-    expenses: {}, // получен
-    addExpenses: [], //получен
-    deposit: false, //получен
-    percentDeposit: 0,
-    moneyDeposit: 0,
-    mission: 50000,
-    period: 3,
+let mark = document.getElementsByTagName('h2')[2];
 
-    asking: function(){
-        if(confirm('Есть ли у вас дополнительный источник заработка?'))
-        {
-            let itemIncome = prompt('Какой у вас дополнительный источник заработка?', 'Таксую').trim();
-            while(isNumber(itemIncome) === true){
-                itemIncome = prompt('Какой у вас дополнительный источник заработка?', 'Таксую').trim();
-            }
-            let cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000).trim();
-            while (isNumber(cashIncome) !== true){
-                cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000).trim();
-            }
-            appData.income[itemIncome] = cashIncome;
-        }
-        
-        let addExpenses = prompt('Перечислите возможные расходы через запятую?', 'Садик, шКола, аВтошКола.');
-        appData.addExpenses = addExpenses.toLowerCase().split(' , ')
-        .map(word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`);
-        appData.deposit = confirm('Есть ли у вас депозит в банке?');
-    }, // ++
+console.log (mark);
 
-    getExpensesMonth: function(){
-        for (let i = 0 ; i<2;i++){
-            let key = prompt('Введите обязательную статью расходов.').trim();
-            while (isNumber(key) === true){
-                key = prompt('Введите обязательную статью расходов.').trim();
-            }
-            let expenses = +prompt('Сколько это будет стоить?').trim();
-            while (isNumber(expenses) !== true){
-                expenses = +prompt('Сколько это будет стоть?');
-            }
-            appData.expenses[key] = expenses;
-        }
-    }, // ++
+mark.textContent = ("Книга 3. this и Прототипы Объектов");
+mark.style.color = "darkkhaki";
 
-    getBudget: function(){
-        let sum = 0;
-        for (let expense of Object.values(appData.expenses)){
-            sum += expense;
-        }
-        appData.expensesMonth = sum;
-        appData.budgetMonth = money - sum;
-        appData.budgetDay = appData.budgetMonth / 30;
-        return appData.budgetMonth;
-    },
+let spam = document.querySelector ('.adv');
+spam.remove();
 
-    getTargetMonth: function(){
-        if (appData.getBudget() > 0){
-            console.log ('Цель будет достигнута через ' + appData.mission/appData.getBudget() + ' месяц(ев).');
-        } else {
-            console.log ('Цель не будет достигнута.');
-        }
-    },
+let list = document.querySelectorAll ('.book ul')[1];
 
-    getStatusIncome: function(){
-    if (appData.getBudget() >= 1200){
-        console.log('У вас большой уровень дохода.');
-        } else if (appData.getBudget() >= 600 && appData.getBudget() < 1200){
-            console.log('У вас средний уровень дохода.');
-        } else {
-            console.log ('Ваш уровень дохода ниже среднего.');
-        }
-    },
-    getInfoDeposit: function(){
-        if(appData.deposit){
-            appData.percentDeposit = prompt('Какой годовой процент?', '10');
-            while (isNumber(appData.percentDeposit) !== true)
-            {
-                appData.percentDeposit = prompt('Какой годовой процент?', '10');
-            }
-            appData.moneyDeposit = prompt('Сколько денег вложено?', 10000);
-            while (isNumber(appData.moneyDeposit) !== true)
-            {
-                appData.moneyDeposit = prompt('Сколько денег вложено?', 10000);
-            }
-        }
-    },
-    calcSavedMoney: function(){
-        return appData.budgetMonth * appData.period;
-    }
-};
+let points = document.querySelectorAll('.book ul li');
 
-start(); // ++
-appData.asking(); // ++
-appData.getExpensesMonth(); // ++
-appData.getBudget();
+points[9].after(points[12]);
+points[12].after(points[14]);
+points[15].after(points[8]);
 
-console.log (appData.expensesMonth);
-appData.getTargetMonth();
-appData.getStatusIncome();
 
-appData.getInfoDeposit();
-console.log(appData.addExpenses);
+points[38].before(points[45]);
+points[45].after(points[39]);
+points[39].after(points[40]);
+points[44].before(points[41]);
 
-for (let key in appData){
-    console.log (' ' + key + ' ' + appData[key]);
-}
+let OurObject = document.querySelectorAll ('.book ul')[5];
+const NewElem = document.createElement ('li');
+NewElem.textContent = " Глава 8: За пределами ES6 ";
 
-let calculate = document.getElementById ('start');
-let buttonPlusOne = document.getElementsByTagName ('button')[0];
-let buttonPlusTwo = document.getElementsByTagName ('button')[1];
-let checkMark = document.querySelector ('#deposit-check');
-let fieldNames = document.querySelectorAll ('.additional_income-item');
+OurObject.append(NewElem);
+points[55].after(NewElem);
 
-let rightStolbMonthlyIncome = document.getElementsByClassName ('result-total budget_month-value');
-let rightStolbDailyBudget = document.getElementsByClassName ('result-total budget_day-value');
-let rightStolbMonthlyConsumption = document.getElementsByClassName ('result-total expenses_month-value');
-let rightStolbPossibleIncome = document.getElementsByClassName ('result-total additional_income-value');
-let rightStolbPossibleCosts = document.getElementsByClassName ('result-total additional_expenses-value');
-let rightStolbAccumulationForThePeriod = document.getElementsByClassName ('result-total income_period-value');
-let rightStolbTimeToReachTheGoalInMonths = document.getElementsByClassName ('result-total target_month-value');
 
-let leftMonthlyIncome = document.querySelector ('.salary-amount');
-let leftAdditionalIncomeName = document.querySelector ('.income-title');
-let leftAdditionalIncomeSumma = document.querySelector ('.income-amount');
-let leftObligatoryExpensesOne = document.querySelector ('.expenses-title');
-let leftObligatoryExpensesTwo = document.querySelector ('.expenses-amount');
-let leftPossibleCosts = document.querySelector ('.additional_expenses-item');
-let leftdepozit = document.querySelector ('.target-amount');
+console.log (list);
+console.log (points);
