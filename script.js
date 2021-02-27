@@ -127,19 +127,23 @@ for (let key in appData){
 }
 
 let calculate = document.getElementById ('start');
+// a
 let buttonPlusOne = document.getElementsByTagName ('button')[0];
 let buttonPlusTwo = document.getElementsByTagName ('button')[1];
+// b
 let checkMark = document.querySelector ('#deposit-check');
+// c
 let fieldNames = document.querySelectorAll ('.additional_income-item');
+// d
 
-let rightStolbMonthlyIncome = document.getElementsByClassName ('result-total budget_month-value');
-let rightStolbDailyBudget = document.getElementsByClassName ('result-total budget_day-value');
-let rightStolbMonthlyConsumption = document.getElementsByClassName ('result-total expenses_month-value');
-let rightStolbPossibleIncome = document.getElementsByClassName ('result-total additional_income-value');
-let rightStolbPossibleCosts = document.getElementsByClassName ('result-total additional_expenses-value');
-let rightStolbAccumulationForThePeriod = document.getElementsByClassName ('result-total income_period-value');
-let rightStolbTimeToReachTheGoalInMonths = document.getElementsByClassName ('result-total target_month-value');
-
+let rightStolbMonthlyIncome = document.getElementsByClassName ('result-total budget_month-value')[0];
+let rightStolbDailyBudget = document.getElementsByClassName ('result-total budget_day-value')[0];
+let rightStolbMonthlyConsumption = document.getElementsByClassName ('result-total expenses_month-value')[0];
+let rightStolbPossibleIncome = document.getElementsByClassName ('result-total additional_income-value')[0];
+let rightStolbPossibleCosts = document.getElementsByClassName ('result-total additional_expenses-value')[0];
+let rightStolbAccumulationForThePeriod = document.getElementsByClassName ('result-total income_period-value')[0];
+let rightStolbTimeToReachTheGoalInMonths = document.getElementsByClassName ('result-total target_month-value')[0];
+// e
 let leftMonthlyIncome = document.querySelector ('.salary-amount');
 let leftAdditionalIncomeName = document.querySelector ('.income-title');
 let leftAdditionalIncomeSumma = document.querySelector ('.income-amount');
@@ -147,3 +151,4 @@ let leftObligatoryExpensesOne = document.querySelector ('.expenses-title');
 let leftObligatoryExpensesTwo = document.querySelector ('.expenses-amount');
 let leftPossibleCosts = document.querySelector ('.additional_expenses-item');
 let leftdepozit = document.querySelector ('.target-amount');
+// f
