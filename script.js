@@ -143,8 +143,8 @@ start.addEventListener('click', appData.start);
 
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 
-// appData.getTargetMonth();
-// appData.getStatusIncome();
+    // appData.getTargetMonth();
+    // appData.getStatusIncome();
 
 appData.getInfoDeposit();
 
