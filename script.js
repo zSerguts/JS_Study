@@ -15,7 +15,7 @@ let start = document.getElementById ('start'),
     salaryAmount = document.querySelector ('.salary-amount'),
     incomeTitle = document.querySelector ('.income-title'),
     expensesTitle = document.querySelector ('.expenses-title'),
-    selectTitle = document.getElementsByClassName ('title period-amount')[0],
+    selectTitle = document.getElementsByClassName ('period-amount')[0],
     expensesItems = document.querySelectorAll ('.expenses-items'),
     periodSelect = document.querySelector ('.period-select'),
     additionalExpensesItem = document.querySelector ('.additional_expenses-item'),
@@ -41,21 +41,12 @@ const appData = {
     percentDeposit: 0,
     moneyDeposit: 0,
     start: function(){
-
-        if (salaryAmount.value === ''){
-            alert('Ошибка, поле "Месячный доход" должно быть заполнено!');
-            return;
-        }
-
         appData.budget = Number(salaryAmount.value);
-        console.log("leftMonthlyIncome.value", salaryAmount.value);
         appData.getExpenses();
         appData.getIncome();
         appData.getAddExpenses();
         appData.getAddIncome();
         appData.getBudget();
-
-
         appData.showResult();
     },
 
@@ -77,6 +68,7 @@ const appData = {
             expensesPlus.style.display = 'none';
         }
     },
+
     addIncomeBlock: function(){
         let cloneIncomeItem = incomeItems[0].cloneNode(true);
         incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
@@ -85,6 +77,7 @@ const appData = {
             incomePlus.style.display = 'none';
         }
     },
+
     getExpenses: function(){
         expensesItems.forEach(function(item){
             let itemExpenses = item.querySelector('.expenses-title').value;
@@ -118,7 +111,7 @@ const appData = {
             if (item !== ''){
                 appData.addExpenses.push(item);
             }
-        })
+        });
     },
 
     getAddIncome: function(){
@@ -159,6 +152,7 @@ const appData = {
             console.log ('Ваш уровень дохода ниже среднего.');
         }
     },
+
     getInfoDeposit: function(){
         if(appData.deposit){
             appData.percentDeposit = prompt('Какой годовой процент?', '10');
@@ -173,26 +167,31 @@ const appData = {
             }
         }
     },
+
     calcPeriod: function(){
         return appData.budgetMonth * periodSelect.value;
     }
 };
-
 start.addEventListener('click', appData.start);
 periodSelect.addEventListener('input', appData.getInputPeriodSelect);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
     // appData.getTargetMonth();
     // appData.getStatusIncome();
-
 appData.getInfoDeposit();
-
 // for (let key in appData){
 //     console.log (' ' + key + ' ' + appData[key]);
 // }
 periodSelect.addEventListener('change', function () {
     /* После отжатия кнопки мышки с ползунка */
-    selectTitle = this.value;
+    periodSelect.value = this.value;
+    selectTitle.textContent = this.value;
+    console.log(periodSelect.value);
 }, false);
+periodSelect.oninput = function(){
+    selectTitle = periodSelect.value;
+}
 console.log(appData.getInputPeriodSelect());
-periodSelect.value = 5;
+// while (salaryAmount.value.trim() === ''){
+//     start.disabled = true;
+// }
