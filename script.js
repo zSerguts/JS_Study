@@ -1,4 +1,5 @@
-'strict';
+document.addEventListener('DOMContentLoaded', function(){
+'use strict';
 
 const parents = document.querySelectorAll ('.books');
 const books = document.querySelectorAll ('.book');
@@ -49,3 +50,4 @@ points[55].after(NewElem);
 
 console.log (list);
 console.log (points);
+});
