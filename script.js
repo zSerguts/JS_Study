@@ -13,6 +13,26 @@ const start = function(){
     }
 }; // ++
 
+const _start = document.getElementById ('start'),
+    incomePlus = document.getElementsByTagName ('button')[0],
+    expensesPlus = document.getElementsByTagName ('button')[1],
+    depositCheck = document.querySelector ('#deposit-check'),
+    additionalIncomeItem = document.querySelectorAll ('input.className.additional_income-item'),
+    budgetMonthValue = document.getElementsByClassName ('result-total budget_month-value')[0],
+    budgetDayValue = document.getElementsByClassName ('result-total budget_day-value')[0],
+    expensesMonthValue = document.getElementsByClassName ('result-total expenses_month-value')[0],
+    additionalIncomeValue = document.getElementsByClassName ('result-total additional_income-value')[0],
+    additionalExpensesValue = document.getElementsByClassName ('result-total additional_expenses-value')[0],
+    incomePeriodValue = document.getElementsByClassName ('result-total income_period-value')[0],
+    targetMonthValue = document.getElementsByClassName ('result-total target_month-value')[0],
+    salaryAmount = document.querySelector ('.salary-amount'),
+    incomeTitle = document.querySelector ('.income-title'),
+    incomeAmount = document.querySelector ('.income-amount'),
+    expensesTitle = document.querySelector ('input.className.expenses-title'),
+    expensesAmount = document.querySelector ('input.className.expenses-amount'),
+    additionalExpensesItem = document.querySelector ('.additional_expenses-item'),
+    targetAmount = document.querySelector ('.target-amount'),
+    periodSelect = document.querySelector ('.period-select');
 
 const appData = {
     budget: 12000,
@@ -126,29 +146,7 @@ for (let key in appData){
     console.log (' ' + key + ' ' + appData[key]);
 }
 
-let calculate = document.getElementById ('start');
-// a
-let buttonPlusOne = document.getElementsByTagName ('button')[0];
-let buttonPlusTwo = document.getElementsByTagName ('button')[1];
-// b
-let checkMark = document.querySelector ('#deposit-check');
-// c
-let fieldNames = document.querySelectorAll ('.additional_income-item');
-// d
+console.log(typeof(expensesTitle));
 
-let rightStolbMonthlyIncome = document.getElementsByClassName ('result-total budget_month-value')[0];
-let rightStolbDailyBudget = document.getElementsByClassName ('result-total budget_day-value')[0];
-let rightStolbMonthlyConsumption = document.getElementsByClassName ('result-total expenses_month-value')[0];
-let rightStolbPossibleIncome = document.getElementsByClassName ('result-total additional_income-value')[0];
-let rightStolbPossibleCosts = document.getElementsByClassName ('result-total additional_expenses-value')[0];
-let rightStolbAccumulationForThePeriod = document.getElementsByClassName ('result-total income_period-value')[0];
-let rightStolbTimeToReachTheGoalInMonths = document.getElementsByClassName ('result-total target_month-value')[0];
-// e
-let leftMonthlyIncome = document.querySelector ('.salary-amount');
-let leftAdditionalIncomeName = document.querySelector ('.income-title');
-let leftAdditionalIncomeSumma = document.querySelector ('.income-amount');
-let leftObligatoryExpensesOne = document.querySelector ('.expenses-title');
-let leftObligatoryExpensesTwo = document.querySelector ('.expenses-amount');
-let leftPossibleCosts = document.querySelector ('.additional_expenses-item');
-let leftdepozit = document.querySelector ('.target-amount');
-// f
+console.log(typeof(expensesAmount));
+console.log(additionalIncomeItem);
