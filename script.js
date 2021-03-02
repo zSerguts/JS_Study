@@ -21,7 +21,8 @@ let start = document.getElementById ('start'),
     periodSelect = document.querySelector ('.period-select'),
     additionalExpensesItem = document.querySelector ('.additional_expenses-item'),
     targetAmount = document.querySelector ('.target-amount'),
-    incomeItems = document.querySelectorAll('.income-items');
+    incomeItems = document.querySelectorAll('.income-items'),
+    salaryAmountCheck = start.getAttribute('disabled');
 
 const isNumber = function(n){
     return !isNaN(parseFloat(n)) && isFinite(n);
@@ -53,13 +54,13 @@ const appData = {
         appData.showResult();
     },
 
-    // checkAmountValue: function(){
-    //     if (salaryAmount.value !== ""){
-    //         start.disabled = true;
-    //     } else {
-    //         start.disabled = false;
-    //     }
-    // },
+    checkAmountValue: function(e){
+        if(e.target.checked === ''){
+            start.disabled = true;
+        }   else {
+            start.disabled = false;
+        }
+    },
 
     updateValue: function(e){
         selectTitle.textContent = e.target.value;
@@ -185,17 +186,7 @@ const appData = {
     }
 };
 
-// start.disabled = false;
-// appData.budget = +salaryAmount.value;
-// if (appData.budget !== 0){
-//     start.disabled = true;
-//     console.log(appData.budget);
-// }
-// start.addEventListener('click', function(){
-//     return;
-// });
-
-// start.addEventListener('click', appData.checkAmountValue);
+salaryAmount.addEventListener('input', appData.checkAmountValue);
 start.addEventListener('click', appData.start);
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
