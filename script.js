@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function(){
+
 'use strict';
 
 const start = document.getElementById ('start'),
@@ -33,7 +33,6 @@ const isNumber = function(n){
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
-
 const AppData = function(){
     this.budget = 0,
     this.budgetDay = 0,
@@ -49,6 +48,8 @@ const AppData = function(){
     this.moneyDeposit = 0;
 };
 
+const appData = new AppData();
+
 AppData.prototype.cancel = function(){
     targetAmount.disabled = false;
     depositCheck.disabled = false;
@@ -58,6 +59,7 @@ AppData.prototype.cancel = function(){
     periodSelect.value = 1;
     selectTitle.textContent = 1;
     salaryAmount.disabled = false; // +
+    salaryAmount.value = '';
     depositCheck.checked = '';
     salaryAmount.value = '';
     additionalExpensesItem.disabled = false; // +
@@ -170,7 +172,7 @@ AppData.prototype.getExpenses = function(){
         let cashExpenses = item.querySelector('.expenses-amount').value;
         if(itemExpenses !== '' && cashExpenses !== '')
         {
-            this.expenses[itemExpenses] = Number(cashExpenses);
+            appData.expenses[itemExpenses] = Number(cashExpenses);
         }
     },this);
 };
@@ -180,7 +182,7 @@ AppData.prototype.getIncome = function(){
         let itemIncome = item.querySelector('.income-title').value;
         let cashIncome = item.querySelector('.income-amount').value;
         if(itemIncome !== '' && cashIncome !== ''){
-            this.income[itemIncome] = Number(cashIncome);
+            appData.income[itemIncome] = Number(cashIncome);
         }
     },this);
 };
@@ -206,12 +208,12 @@ AppData.prototype.getAddIncome = function(){
 
 AppData.prototype.getBudget = function(){
     let sum = 0;
-    for (let expense of Object.values(this.expenses)){
+    for (let expense of Object.values(appData.expenses)){
         sum += expense;
     }
     this.expensesMonth = sum;
     sum = 0;
-    for (let income of Object.values(this.income)){
+    for (let income of Object.values(appData.income)){
         sum += income;
     }
     this.incomeMonth = sum;
@@ -259,24 +261,16 @@ AppData.prototype.start = function(){
     this.getAddIncome();
     this.getBudget();
     this.showResult();
-}
-
-
-
-
-const appData = new AppData();
-console.log(appData);
-
-AppData.prototype.EventListeners = function(){
-    
 };
 
+AppData.prototype.EventListeners = function(){
+    salaryAmount.addEventListener('input', AppData.prototype.checkAmountValue);
+    expensesPlus.addEventListener('click', AppData.prototype.addExpensesBlock);
+    incomePlus.addEventListener('click', AppData.prototype.addIncomeBlock);
+    periodSelect.addEventListener('input', AppData.prototype.updateValue); 
+    periodSelect.addEventListener('input', AppData.prototype.calcPeriod);
+    start.addEventListener('click', AppData.prototype.start.bind(appData));
+    cancel.addEventListener('click', AppData.prototype.cancel.bind(appData));
+};
 
-salaryAmount.addEventListener('input', appData.checkAmountValue);
-expensesPlus.addEventListener('click', appData.addExpensesBlock);
-incomePlus.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('input', appData.updateValue);    
-periodSelect.addEventListener('input', appData.calcPeriod);
-start.addEventListener('click', appData.start.bind(appData));
-cancel.addEventListener('click', appData.cancel.bind(appData)); 
-});
+appData.EventListeners();
