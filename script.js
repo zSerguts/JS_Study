@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
 'use strict';
 
-let start = document.getElementById ('start'),
+const start = document.getElementById ('start'),
     cancel = document.getElementById('cancel'),
     incomePlus = document.getElementsByTagName ('button')[0],
     expensesPlus = document.getElementsByTagName ('button')[1],
@@ -23,8 +23,10 @@ let start = document.getElementById ('start'),
     selectTitle = document.getElementsByClassName ('period-amount')[0],
     periodSelect = document.querySelector ('.period-select'),
     additionalExpensesItem = document.querySelector ('.additional_expenses-item'),
-    targetAmount = document.querySelector ('.target-amount'),
-    expensesItems = document.querySelectorAll ('.expenses-items'),
+    targetAmount = document.querySelector ('.target-amount');
+    // цель
+
+let expensesItems = document.querySelectorAll ('.expenses-items'),
     incomeItems = document.querySelectorAll('.income-items');
 
 const isNumber = function(n){
@@ -46,15 +48,19 @@ const appData = {
     percentDeposit: 0,
     moneyDeposit: 0,
     cancel: function(){
+        depositCheck.disabled = false;
+        targetAmount.disabled = false;
         expensesPlus.disabled = false; // +
         incomePlus.disabled = false; // +
         periodSelect.disabled = false; // +
         periodSelect.value = 1;
         selectTitle.textContent = 1;
         salaryAmount.disabled = false; // +
+        depositCheck.checked = '';
         salaryAmount.value = '';
         additionalExpensesItem.disabled = false; // +
         additionalExpensesItem.value = '';
+        targetAmount.value = '';
         cancel.style.display = 'none'; // +
         start.style.display = 'initial'; // +
         expensesItems.forEach(function(item, index){
@@ -84,7 +90,19 @@ const appData = {
         additionalIncomeItem.forEach(function(item){
             item.disabled = false;
             item.value = '';
-        });
+        }),
+        this.budget = 0,
+        this.budgetDay = 0,
+        this.budgetMonth = 0,
+        this.expensesMonth = 0,
+        this.income = {},
+        this.incomeMonth = 0,
+        this.addIncome = [],
+        this.expenses = {}, 
+        this.addExpenses = [],
+        this.deposit = false,
+        this.percentDeposit = 0,
+        this.moneyDeposit = 0;
 
         // правый столбец
         additionalExpensesValue.value = '';
@@ -99,6 +117,7 @@ const appData = {
         budgetMonthValue.value = '';
         budgetDayValue.value = 0;
         // правый столбец
+        console.log(appData);
     },
 
     checkAmountValue: function(e){
@@ -170,7 +189,7 @@ const appData = {
         addExpenses.forEach(function(item){
             item = item.trim();
             if (item !== ''){
-                appData.addExpenses.push(item);
+                this.addExpenses.push(item);
             }
         },this);
     },
@@ -179,7 +198,7 @@ const appData = {
         additionalIncomeItem.forEach(function(item){
             let itemValue = item.value.trim();
             if (itemValue !== ''){
-                appData.addIncome.push(itemValue);
+                this.addIncome.push(itemValue);
             }
         },this);
     },
@@ -207,10 +226,10 @@ const appData = {
     calcPeriod: function(){
         return incomePeriodValue.value = this.budgetMonth * periodSelect.value;
     },
-    startBindThis: function(){
-        appData.start.bind(appData);
-    },
+
     start: function(){
+        depositCheck.disabled = true; //+
+        targetAmount.disabled = true; // +
         expensesPlus.disabled = true; // +
         incomePlus.disabled = true; // +
         periodSelect.disabled = true; // +
@@ -248,5 +267,5 @@ incomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', appData.updateValue);    
 periodSelect.addEventListener('input', appData.calcPeriod);
 start.addEventListener('click', appData.start.bind(appData));
-cancel.addEventListener('click', appData.cancel); 
+cancel.addEventListener('click', appData.cancel.bind(appData)); 
 });
