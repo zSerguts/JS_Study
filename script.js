@@ -1,9 +1,6 @@
 'use strict';
 
 class First {
-    constructor(parent){
-        this.parent = parent;
-    }
     hello(){
         console.log('Привет! Я - метод родителя!');
     }
