@@ -65,8 +65,14 @@ class AppData {
     }
 
     cancel(){
-        targetAmount.disabled = false;
+        depositBank.style.display = 'none';
+        depositAmount.style.display = 'none';
+        depositPercent.style.display = 'none';
         depositCheck.disabled = false;
+        depositPercent.disabled = false;
+        depositBank.disabled = false;
+        depositAmount.disabled = false;
+        targetAmount.disabled = false;
         expensesPlus.disabled = false; // +
         incomePlus.disabled = false; // +
         periodSelect.disabled = false; // +
@@ -75,6 +81,9 @@ class AppData {
         salaryAmount.disabled = false; // +
         salaryAmount.value = '';
         depositCheck.checked = '';
+        depositAmount.value = '';
+        depositBank.value = '';
+        depositPercent.value = '';
         salaryAmount.value = '';
         additionalExpensesItem.disabled = false; // +
         additionalExpensesItem.value = '';
@@ -139,6 +148,9 @@ class AppData {
     }
 
     start(){
+        depositPercent.disabled = true;
+        depositBank.disabled = true;
+        depositAmount.disabled = true;
         depositCheck.disabled = true; //+
         targetAmount.disabled = true; // +
         expensesPlus.disabled = true; // +
@@ -290,14 +302,25 @@ class AppData {
     changePercent(){
         const valueSelect = this.value;
         if (valueSelect === 'other'){
-            if(isNaN(depositPercent.value)){
-                if (depositPercent.value < 100 && depositPercent.value > 0){
-                    depositPercent.value = valueSelect;
-                }
-            } else {
-                alert ('Введите корректное значение в поле проценты.');
-                start.disabled = true;
-            }
+            depositPercent.disabled = false;
+            depositPercent.value = '';
+            depositPercent.addEventListener('keyup', function(){
+                if(isNumber(depositPercent.value)){
+                    console.log(1);
+                    if(depositPercent.value < 100 && depositPercent.value > 0){
+                        console.log(depositPercent.value);
+                        start.disabled = false;
+                    } else {
+                        alert('Введите правильный процент!');
+                        depositPercent.value = '';
+                        start.disabled = true;    
+                    }
+                } else {
+                    alert('Введите правильный процент!');
+                    depositPercent.value = '';
+                    start.disabled = true;
+                }    
+            })
         }   else {
             depositPercent.value = valueSelect;
             depositPercent.disabled = true;
